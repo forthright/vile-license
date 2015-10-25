@@ -1,0 +1,38 @@
+{
+  "name": "@brentlintner/vile-license",
+  "version": "0.0.1",
+  "description": "A vile plugin for checking dependency licenses",
+  "main": "lib/index.js",
+  "scripts": {
+    "postinstall": "babel -d lib -m common src",
+    "dev": "bin/dev",
+    "test": "bin/test"
+  },
+  "keywords": [
+    "vile",
+    "bower",
+    "npm",
+    "license",
+    "licenses",
+    "check",
+    "license-checker",
+    "bower-license"
+  ],
+  "dependencies": {
+    "@brentlintner/vile": "~0.1.7",
+    "babel": "5.6.14",
+    "bluebird": "2.9.34",
+    "bower-license": "0.2.6",
+    "license-checker": "3.1.0",
+    "lodash": "3.10.0"
+  },
+  "devDependencies": {
+    "coffee-script": "1.9.3",
+    "chai": "3.0.0",
+    "istanbul": "0.3.16",
+    "mimus": "0.1.2",
+    "mocha": "2.2.5",
+    "sinon": "1.15.4",
+    "sinon-chai": "2.8.0"
+  }
+}
