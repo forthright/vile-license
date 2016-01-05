@@ -1,6 +1,6 @@
 {
   "name": "@brentlintner/vile-license",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A vile plugin for checking dependency licenses",
   "main": "lib/index.js",
   "scripts": {
