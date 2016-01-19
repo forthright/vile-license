@@ -19,28 +19,36 @@ project dependency [licenses](https://tldrlegal.com).
 
 ## Config
 
+You specify the license types you can have and can't have in your `.vile.yml`.
+
+License strings are valid if the string **occurs** in the license name
+being compared, so using both whitelisting and blacklisting are recommended.
+
+## Whitelisting
+
 ```yml
 license:
-  config: MPL-2.0
+  config:
+    allowed: MPL-2.0
 ```
 
 or:
 
 ```yml
 license:
-  config: [
+  config:
+    allowed: [
       "MIT",
-      "MPL-2.0"
+      "MPL"
     ]
 ```
 
-## Ingnoring Packages
+### Blacklisting
 
 ```yml
 license:
-  ignore: [
-      "foo-pkg"
-    ]
+  config:
+    disallowed: [ "AGPL" ]
 ```
 
 ## Restrictions

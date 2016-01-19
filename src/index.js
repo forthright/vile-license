@@ -10,9 +10,6 @@ const NPM_FILE = "package.json"
 const UNKNOWN_LICENSE = "UNKNOWN"
 
 // TODO: Support parsing various grammars
-// See .vile.yml
-let no_issue = (file) => [ vile.issue(vile.OK, file) ]
-
 // TODO: DRY two methods
 
 //'yargs@3.5.4':
@@ -20,12 +17,12 @@ let no_issue = (file) => [ vile.issue(vile.OK, file) ]
 //        repository: 'https://github.com/bcoe/yargs',
 //             licenseFile: '/home/brent/src/vile/node_modules/
 //             jade/node_modules/uglify-js/node_modules/yargs/LICENSE' } }
-let check_npm = (allowed, ignored_packages) => {
+let check_npm = (allowed, ignored) => {
   let is_allowed = (list) => _.
     any(list, (l) => _.includes(allowed, l.toLowerCase()))
 
-  let is_ignored = (name) => _.
-    any(ignored_packages, (n) => n == name)
+  let is_ignored = (list) => _.
+    any(list, (l) => _.includes(ignored, l.toLowerCase()))
 
   return new Promise((resolve, reject) => {
     if (fs.existsSync(NPM_FILE)) {
@@ -38,31 +35,35 @@ let check_npm = (allowed, ignored_packages) => {
           let name = dep.split("@")[0]
           let version = dep.split("@")[1]
 
-          // TODO: not here
-          if (is_allowed(licenses) || is_ignored(name)) return
+          if (is_allowed(licenses) && !is_ignored(licenses)) return
 
-          return vile.issue(
-            vile.WARNING,
-            NPM_FILE,
-            `${name} (v${version}) is licensed ` +
-            `under ${_.trim(licenses.join(", "))}`
-          )
+          let licenses_str = _.trim(licenses.join(", "))
+
+          return vile.issue({
+            type: vile.DEP,
+            path: NPM_FILE,
+            title: "Possible license violation",
+            name: name,
+            current: version,
+            message: `${name} (v${version}) is licensed under ${licenses_str}`,
+            signature: `license::${name}::${version}::${licenses_str}`
+          })
         }), (issue) => !issue))
       })
     } else {
-      resolve(no_issue(NPM_FILE))
+      resolve([])
     }
   })
 }
 
 //{ 'jquery@2.1.4': { licenses: [ 'MIT' ] },
 //  'pure@0.6.0': { licenses: [ 'BSD*' ] } }
-let check_bower = (allowed, ignored_packages) => {
+let check_bower = (allowed, ignored) => {
   let is_allowed = (list) => _.
     any(list, (l) => _.includes(allowed, l.toLowerCase()))
 
-  let is_ignored = (name) => _.
-    any(ignored_packages, (n) => n == name)
+  let is_ignored = (list) => _.
+    any(list, (l) => _.includes(ignored, l.toLowerCase()))
 
   return new Promise((resolve, reject) => {
     if (fs.existsSync(BOWER_FILE)) {
@@ -72,22 +73,27 @@ let check_bower = (allowed, ignored_packages) => {
 
           let name = dep.split("@")[0]
           let version = dep.split("@")[1]
-          let licenses = _.trim(_.get(info, "licenses", []).join(", "))
+          let licenses = _.get(info, "licenses", [])
 
-          // TODO not here
-          if (is_allowed(info.licenses) || is_ignored(name)) return
+          if (is_allowed(licenses) && !is_ignored(licenses)) return
 
-          return vile.issue(
-            vile.WARNING,
-            BOWER_FILE,
-            `${name} (v${version}) is licensed under ${licenses}`
-          )
+          let licenses_str = _.trim(licenses.join(", "))
+
+          return vile.issue({
+            type: vile.DEP,
+            path: BOWER_FILE,
+            title: "Possible license violation",
+            name: name,
+            current: version,
+            message: `${name} (v${version}) is licensed under ${licenses_str}`,
+            signature: `license::${name}::${version}::${licenses_str}`
+          })
         }), (issue) => !issue)
 
         resolve(issues)
       })
     } else {
-      resolve(no_issue(BOWER_FILE))
+      resolve([])
     }
   })
 }
@@ -95,11 +101,11 @@ let check_bower = (allowed, ignored_packages) => {
 // TODO: support ignoring licence types (and for project names)
 let punish = (plugin_config) => {
   // TODO: don't do this (rename var)
-  let allowed = plugin_config.config || []
+  let allowed = _.get(plugin_config, "config.allowed",  [])
   if (typeof allowed == "string") allowed = [allowed]
   allowed = _.map(allowed, (a) => a.toLowerCase())
 
-  let ignored = plugin_config.ignore || []
+  let ignored = _.get(plugin_config, "config.disallowed",  [])
   if (typeof ignored == "string") ignored = [ignored]
   ignored = _.map(ignored, (a) => a.toLowerCase())
 
