@@ -19,10 +19,14 @@ const UNKNOWN_LICENSE = "UNKNOWN"
 //             jade/node_modules/uglify-js/node_modules/yargs/LICENSE' } }
 let check_npm = (allowed, ignored) => {
   let is_allowed = (list) => _.
-    any(list, (l) => _.includes(allowed, l.toLowerCase()))
+    any(list, (l) => _.any(allowed, (match) => {
+      (new RegExp(match, "i")).test(l)
+    }))
 
   let is_ignored = (list) => _.
-    any(list, (l) => _.includes(ignored, l.toLowerCase()))
+    any(list, (l) => _.any(ignored, (match) => {
+      (new RegExp(match, "i")).test(l)
+    }))
 
   return new Promise((resolve, reject) => {
     if (fs.existsSync(NPM_FILE)) {
@@ -60,10 +64,14 @@ let check_npm = (allowed, ignored) => {
 //  'pure@0.6.0': { licenses: [ 'BSD*' ] } }
 let check_bower = (allowed, ignored) => {
   let is_allowed = (list) => _.
-    any(list, (l) => _.includes(allowed, l.toLowerCase()))
+    any(list, (l) => _.any(allowed, (match) => {
+      (new RegExp(match, "i")).test(l)
+    }))
 
   let is_ignored = (list) => _.
-    any(list, (l) => _.includes(ignored, l.toLowerCase()))
+    any(list, (l) => _.any(ignored, (match) => {
+      (new RegExp(match, "i")).test(l)
+    }))
 
   return new Promise((resolve, reject) => {
     if (fs.existsSync(BOWER_FILE)) {
