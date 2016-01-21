@@ -51,6 +51,16 @@ license:
     disallowed: [ "AGPL" ]
 ```
 
+## Ignoring
+
+You can ignore specific packages as well.
+
+```yml
+license:
+  config:
+    ignored: [ "some-pkg" ]
+```
+
 ## Restrictions
 
 Assumes files are in the `cwd`.
