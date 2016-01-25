@@ -46,10 +46,12 @@ let check_npm = (allowed, ignored, disallowed) => {
             type: vile.DEP,
             path: NPM_FILE,
             title: "Possible license violation",
-            name: name,
-            current: version,
             message: `${name} (v${version}) is licensed under ${licenses_str}`,
-            signature: `license::${name}::${version}::${licenses_str}`
+            signature: `license::${name}::${version}::${licenses_str}`,
+            dependency: {
+              name: name,
+              current: version
+            }
           })
         }), (issue) => !issue))
       })
@@ -88,10 +90,12 @@ let check_bower = (allowed, ignored, disallowed) => {
             type: vile.DEP,
             path: BOWER_FILE,
             title: "Possible license violation",
-            name: name,
-            current: version,
             message: `${name} (v${version}) is licensed under ${licenses_str}`,
-            signature: `license::${name}::${version}::${licenses_str}`
+            signature: `license::${name}::${version}::${licenses_str}`,
+            dependency: {
+              name: name,
+              current: version
+            }
           })
         }), (issue) => !issue)
 
