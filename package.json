@@ -1,5 +1,5 @@
 {
-  "name": "@brentlintner/vile-license",
+  "name": "@forthright/vile-license",
   "version": "0.3.1",
   "description": "A vile plugin for checking dependency licenses",
   "main": "lib/index.js",
@@ -23,14 +23,15 @@
     "bower-license"
   ],
   "dependencies": {
-    "@brentlintner/vile": "^0.5.3",
+    "@forthright/vile": "^0.5.3",
     "bluebird": "^3.1.1",
     "bower-license": "^0.4.1",
     "license-checker": "^4.2.0",
     "lodash": "^3.10.1"
   },
   "devDependencies": {
-    "babel": "^5.6.14",
+    "babel-cli": "^6.5.1",
+    "babel-preset-es2015": "^6.5.0",
     "chai": "^3.4.1",
     "coffee-script": "^1.10.0",
     "istanbul": "^0.4.2",
