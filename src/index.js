@@ -19,12 +19,12 @@ const UNKNOWN_LICENSE = "UNKNOWN"
 //             jade/node_modules/uglify-js/node_modules/yargs/LICENSE' } }
 let check_npm = (allowed, ignored, disallowed) => {
   let is_allowed = (list) =>
-    _.any(list, (l) => _.any(allowed, (match) =>
+    _.some(list, (l) => _.some(allowed, (match) =>
       new RegExp("(^|\\s+)" + l + "(\\s+|$)", "i").test(match))) &&
-      !_.any(list, (l) => _.any(disallowed, (match) =>
+      !_.some(list, (l) => _.some(disallowed, (match) =>
         new RegExp("(^|\\s+)" + l + "(\\s+|$)", "i").test(match)))
 
-  let pkg_is_ignored = (pkg) => _.any(ignored, (i) => pkg == i)
+  let pkg_is_ignored = (pkg) => _.some(ignored, (i) => pkg == i)
 
   return new Promise((resolve, reject) => {
     if (fs.existsSync(NPM_FILE)) {
@@ -65,18 +65,20 @@ let check_npm = (allowed, ignored, disallowed) => {
 //  'pure@0.6.0': { licenses: [ 'BSD*' ] } }
 let check_bower = (allowed, ignored, disallowed) => {
   let is_allowed = (list) =>
-    _.any(list, (l) => _.any(allowed, (match) =>
+    _.some(list, (l) => _.some(allowed, (match) =>
       new RegExp("(^|\\s+)" + l + "(\\s+|$)", "i").test(match))) &&
-      !_.any(list, (l) => _.any(disallowed, (match) =>
+      !_.some(list, (l) => _.some(disallowed, (match) =>
         new RegExp("(^|\\s+)" + l + "(\\s+|$)", "i").test(match)))
 
-  let pkg_is_ignored = (pkg) => _.any(ignored, (i) => pkg == i)
+  let pkg_is_ignored = (pkg) => _.some(ignored, (i) => pkg == i)
 
   return new Promise((resolve, reject) => {
     if (fs.existsSync(BOWER_FILE)) {
       bower_license.init(process.cwd(), (licenseMap) => {
         let issues = _.reject(_.map(licenseMap || [], (info, dep) => {
-          if (typeof info.licenses == "string") info.licenses = [ info.licenses ]
+          if (typeof info.licenses == "string") {
+            info.licenses = [ info.licenses ]
+          }
 
           let name = dep.split("@")[0]
           let version = dep.split("@")[1]
