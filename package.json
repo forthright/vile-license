@@ -1,6 +1,6 @@
 {
   "name": "@forthright/vile-license",
-  "version": "0.3.7",
+  "version": "0.3.8",
   "description": "A vile plugin for checking dependency licenses",
   "main": "lib/index.js",
   "license": "MPL-2.0",
