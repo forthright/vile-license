@@ -21,7 +21,10 @@ let npm_licenses = (is_allowed, pkg_is_ignored) =>
       let npm_issues = _.reject(_.map(json || [], (info, dep) => {
         let licenses = typeof info.licenses == "string" ?
           info.licenses.split("/") :
-          info.licenses || [UNKNOWN_LICENSE]
+          info.licenses || UNKNOWN_LICENSE
+
+        if (_.isString(licenses)) licenses = [licenses]
+
         let data = dep.split("@")
         let name = data.length == 2 ? data[0] : data[1]
         let version = data.length == 2 ? data[1] : data[2]
@@ -52,9 +55,7 @@ let bower_licenses = (is_allowed, pkg_is_ignored) =>
 
     bower_license.init(process.cwd(), (licenseMap) => {
       let bower_issues = _.reject(_.map(licenseMap || [], (info, dep) => {
-        if (typeof info.licenses == "string") {
-          info.licenses = [ info.licenses ]
-        }
+        if (_.isString(info.licenses)) info.licenses = [ info.licenses ]
 
         let name = dep.split("@")[0]
         let version = dep.split("@")[1]
