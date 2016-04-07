@@ -3,3 +3,5 @@
 --exclude=.git
 --exclude=lib
 --exclude=node_modules
+--exclude=coverage
+--exclude=node_modules

@@ -1,37 +1,64 @@
 vile:
-  ignore: [
-      "node_modules",
-      ".build",
-      ".test",
-      "coverage"
-    ]
+  ignore:
+    - .build
+    - coverage
+    - node_modules
+    - tags
+    - .test
+    - .ctags
+    - .git
+    - circle.yml
+    - .editorconfig
+    - .eslintignore
+    - .eslintrc
+    - .gitignore
+    - .npmrc
+    - README.md
+    - .vile.yml
+    - .vilerc
+
+coverage:
+  config:
+    path: coverage/lcov.info
 
 length:
   config:
-    file: 250
+    file: 150
     line: 80
 
+depcheck:
+  config:
+    ignore_dev_deps: false
+    ignore_dirs: []
+    ignore_deps:
+      - "@forthright/*"
+      - coffee-script
+      - istanbul
+      - npm-check-updates
+      - release-it
+
 license:
-  config: [
-      "MPL-2.0",
-      "MIT",
-      "MIT*",
-      "The MIT License",
-      "Public Domain",
-      "PSF",
-      "BSD",
-      "BSD*",
-      "BSD-3-Clause",
-      "BSD-2-Clause",
-      "BSD-3-Clause AND MIT",
-      "Artistic-2.0",
-      "(BSD-2-Clause OR MIT OR Apache-2.0)",
-      "ISC",
-      "WTFPL",
-      "(BSD-2-Clause OR WTFPL)",
-      "Apache*",
-      "Apache License 2.0",
-      "Apache 2.0",
-      "Apache-2.0",
-      "WTFPL"
-    ]
+  config:
+    allowed:
+      - MIT
+      - MIT License
+      - MIT AND JSON
+      - The MIT License
+      - MPL
+      - MPL-2.0
+      - Public Domain
+      - PSF
+      - BSD
+      - BSD-3-Clause
+      - BSD-2-Clause
+      - Unlicense
+      - Artistic-2.0
+      - ISC
+      - WTFPL
+      - Apache
+      - Apache-2.0
+      - Apache 2.0
+      - Apache*
+      - Apachev2
+      - WTFPL
+      - GPL

@@ -3,6 +3,7 @@
   "version": "0.3.5",
   "description": "A vile plugin for checking dependency licenses",
   "main": "lib/index.js",
+  "license": "MPL-2.0",
   "files": [
     "lib",
     "README"
@@ -10,7 +11,7 @@
   "scripts": {
     "compile": "babel -d lib -m common src",
     "dev": "bin/dev",
-    "test": "bin/test"
+    "test": "node bin/test"
   },
   "keywords": [
     "vile",
@@ -37,6 +38,7 @@
     "istanbul": "^0.4.2",
     "mimus": "^0.1.2",
     "mocha": "^2.4.5",
+    "npm-check-updates": "^2.6.1",
     "release-it": "^2.3.1",
     "sinon": "^1.17.3",
     "sinon-chai": "^2.8.0"
