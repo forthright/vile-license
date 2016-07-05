@@ -12,7 +12,8 @@
     "compile": "babel -d lib -m common src",
     "dev": "bin/dev",
     "test": "node bin/test",
-    "vile": "vile p -usi --nodecorations"
+    "vile": "vile p -usi --nodecorations",
+    "release-it": "release-it"
   },
   "keywords": [
     "vile",
