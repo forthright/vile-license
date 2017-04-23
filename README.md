@@ -2,12 +2,6 @@
 
 A [vile](http://vile.io) plugin for locking down project dependency [licenses](https://tldrlegal.com).
 
-**NOTICE**
-
-This project is not actively maintained and/or unfinished. If you want to
-help maintain the project, or if you have a better
-alternative to switch to, please open an issue and ask!
-
 ## Supported Checks
 
 - [npm](http://npmjs.org)
@@ -20,16 +14,13 @@ alternative to switch to, please open an issue and ask!
 
 ## Installation
 
-    npm i vile-license
+    npm i -D vile vile-license
 
 ## Config
 
 You specify the license types you can have and can't have in your `.vile.yml`.
 
-License strings are valid if the string **occurs** in the license name
-being compared, so using both whitelisting and blacklisting are recommended.
-
-## Whitelisting
+### Whitelisting
 
 ```yml
 license:
@@ -48,6 +39,10 @@ license:
     ]
 ```
 
+Note: Strings are **partially** matched, so be explicit (ex `MPL-2.0`)
+and use both whitelisting and blacklisting if you want to be sure you
+don't have a false positive.
+
 ### Blacklisting
 
 ```yml
@@ -56,7 +51,7 @@ license:
     disallowed: [ "AGPL" ]
 ```
 
-## Ignoring
+### Ignoring
 
 You can ignore specific packages as well.
 
@@ -66,13 +61,13 @@ license:
     ignored: [ "some-pkg" ]
 ```
 
-## Restrictions
+### Restrictions
 
 Assumes files are in the `cwd`.
 
 ## Vile Types Generated
 
-Generates `vile.ERR` for each license violation.
+Generates `vile.SEC` for each license violation.
 
 ## Architecture
 
