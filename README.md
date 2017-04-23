@@ -1,7 +1,12 @@
 # vile-license
 
-A [vile](http://vile.io) plugin for locking down
-project dependency [licenses](https://tldrlegal.com).
+A [vile](http://vile.io) plugin for locking down project dependency [licenses](https://tldrlegal.com).
+
+**NOTICE**
+
+This project is not actively maintained. If you want to
+help maintain the project, or if you have a better
+alternative to switch to, please open an issue and ask!
 
 ## Supported Checks
 
@@ -64,6 +69,10 @@ license:
 ## Restrictions
 
 Assumes files are in the `cwd`.
+
+## Vile Types Generated
+
+Generates `vile.ERR` for each license violation.
 
 ## Architecture
 

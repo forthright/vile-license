@@ -17,7 +17,9 @@ let npm_licenses = (is_allowed, pkg_is_ignored) =>
     }
 
     // TODO: this module logs "scanning" to console
-    npm_license.init({ start: process.cwd() }, (json) => {
+    npm_license.init({ start: process.cwd() }, (err, json) => {
+      if (err) return reject(err)
+
       let npm_issues = _.reject(_.map(json || [], (info, dep) => {
         let licenses = typeof info.licenses == "string" ?
           info.licenses.split("/") :
