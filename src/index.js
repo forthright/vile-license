@@ -80,12 +80,15 @@ let bower_licenses = (is_allowed, pkg_is_ignored) =>
     })
   })
 
+let partially_matches = (pattern, license_txt) =>
+  new RegExp(pattern, "ig").test(license_txt)
+
 let check = (allowed, ignored_pkgs, disallowed) => {
   let is_allowed = (list) =>
     _.some(list, (l) => _.some(allowed, (match) =>
-      new RegExp("(^|\\s+)" + l + "(\\s+|$)", "i").test(match))) &&
+      partially_matches(match, l))) &&
       !_.some(list, (l) => _.some(disallowed, (match) =>
-        new RegExp("(^|\\s+)" + l + "(\\s+|$)", "i").test(match)))
+        partially_matches(match, l)))
 
   let pkg_is_ignored = (pkg) => _.some(ignored_pkgs, (i) => pkg == i)
 
