@@ -1,4 +1,4 @@
-let vile = require("@forthright/vile")
+let vile = require("vile")
 let _ = require("lodash")
 let fs = require("fs")
 let bower_license = require("bower-license")

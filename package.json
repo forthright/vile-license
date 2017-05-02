@@ -1,13 +1,23 @@
 {
-  "name": "@forthright/vile-license",
+  "name": "vile-license",
   "version": "0.4.0",
   "description": "A vile plugin for checking dependency licenses",
   "main": "lib/index.js",
-  "license": "MPL-2.0",
   "files": [
     "lib",
-    "README"
+    "LICENSE",
+    "README.md"
   ],
+  "author": "Brent Lintner <brent.lintner@gmail.com>",
+  "license": "MPL-2.0",
+  "bugs": {
+    "url": "https://github.com/forthright/vile-license/issues"
+  },
+  "homepage": "https://github.com/forthright/vile-license",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/forthright/vile-license.git"
+  },
   "scripts": {
     "compile": "babel -d lib -m common src",
     "dev": "bin/dev",
@@ -32,9 +42,6 @@
     "lodash": "^4.17.4"
   },
   "devDependencies": {
-    "@forthright/vile": ">=0.13.0",
-    "@forthright/vile-git": "^0.5.1",
-    "@forthright/vile-stat": "0.0.14",
     "babel-cli": "^6.24.1",
     "babel-preset-es2015": "^6.24.1",
     "chai": "^3.5.0",
@@ -48,6 +55,6 @@
     "sinon-chai": "^2.9.0"
   },
   "peerDependencies": {
-    "@forthright/vile": ">=0.13.0"
+    "vile": ">=0.13.0"
   }
 }
