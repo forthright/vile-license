@@ -38,21 +38,21 @@
   "dependencies": {
     "bluebird": "^3.5.0",
     "bower-license": "^0.4.4",
-    "license-checker": "^9.0.3",
+    "license-checker": "^10.1.0",
     "lodash": "^4.17.4"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",
     "babel-preset-es2015": "^6.24.1",
     "chai": "^3.5.0",
-    "coffee-script": "^1.12.5",
+    "coffee-script": "^1.12.6",
     "istanbul": "^0.4.5",
     "mimus": "^0.2.5",
-    "mocha": "^3.2.0",
-    "npm-check-updates": "^2.10.5",
-    "release-it": "^2.7.1",
-    "sinon": "^2.1.0",
-    "sinon-chai": "^2.9.0",
+    "mocha": "^3.4.2",
+    "npm-check-updates": "^2.11.2",
+    "release-it": "^2.7.3",
+    "sinon": "^2.3.2",
+    "sinon-chai": "^2.10.0",
     "vile": "^0.15.0"
   },
   "peerDependencies": {
