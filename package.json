@@ -1,6 +1,6 @@
 {
   "name": "vile-license",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "description": "A vile plugin for checking dependency licenses",
   "main": "lib/index.js",
   "files": [
@@ -49,7 +49,7 @@
     "istanbul": "^0.4.5",
     "mimus": "^0.2.5",
     "mocha": "^3.4.2",
-    "npm-check-updates": "^2.11.2",
+    "npm-check-updates": "^2.11.3",
     "release-it": "^2.7.3",
     "sinon": "^2.3.2",
     "sinon-chai": "^2.10.0",
