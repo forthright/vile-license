@@ -38,7 +38,7 @@
   "dependencies": {
     "bluebird": "^3.5.0",
     "bower-license": "^0.4.4",
-    "license-checker": "^11.0.0",
+    "license-checker": "^13.0.3",
     "lodash": "^4.17.4"
   },
   "devDependencies": {
@@ -50,7 +50,7 @@
     "mimus": "^0.2.6",
     "mocha": "^3.4.2",
     "release-it": "^2.8.0",
-    "sinon": "^2.3.5",
+    "sinon": "^3.0.0",
     "sinon-chai": "^2.11.0",
     "vile": "^0.18.0",
     "vile-ncu": "^0.3.0",
